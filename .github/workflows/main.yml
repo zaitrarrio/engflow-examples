@@ -23,6 +23,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Set up Visual Studio shell
+        uses: egor-tensin/vs-shell@v2
+        if: matrix.os == 'windows-latest'
+
       - name: Building //cpp directory
         run: bazel build //cpp/...
 
@@ -62,7 +66,7 @@ jobs:
           bazel test //python/...
 
       - uses: swift-actions/setup-swift@v1
-        if: matrix.os == 'ubuntu-22.04'
+        if: matrix.os == 'ubuntu-latest'
 
       - name: Testing //swift directory
         run: bazel test --config=clang //swift:tests
