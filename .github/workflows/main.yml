@@ -19,14 +19,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-22.04, macos-12, windows-2019]
     steps:
       - uses: actions/checkout@v3
-
-      - uses: crazy-max/ghaction-chocolatey@v2
-        with:
-          args: install windows-sdk-10.0
-        if: matrix.os == 'windows-latest'
 
       - name: Building //cpp directory
         run: bazel build //cpp/...
