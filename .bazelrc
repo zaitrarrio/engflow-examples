@@ -33,6 +33,7 @@ build:clang --client_env=CC=clang
 
 build:windows --java_runtime_version=remotejdk_11
 build:windows --tool_java_runtime_version=remotejdk_11
+build:windows --host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_6.0.101
 
 build:linux --java_runtime_version=remotejdk_11
 build:linux --tool_java_runtime_version=remotejdk_11
