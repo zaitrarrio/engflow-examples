@@ -254,22 +254,11 @@ http_archive(
     url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/0.23.1.tar.gz",
 )
 
-load("@rules_python//python:repositories.bzl", "py_repositories", "python_register_toolchains")
-
-python_register_toolchains(
-    name = "python_3_11",
-    # Available versions are listed in @rules_python//python:versions.bzl.
-    # We recommend using the same version your team is already standardized on.
-    python_version = "3.8",
-)
-load("@python_3_11//:defs.bzl", "interpreter")
-
 load("@rules_python//python:pip.bzl", "pip_parse")
 
 pip_parse(
     name = "pip_deps",
     requirements_lock = "//python:requirements_lock.txt",
-    python_interpreter_target = interpreter
 )
 
 load("@pip_deps//:requirements.bzl", "install_deps")
